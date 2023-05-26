@@ -45,7 +45,8 @@ public function update_jee_data(){
 
 }
 
-public function update_prep_course_options_pattern(){
+public function update_prep_course_options_pattern()
+{
   $db = new DatabaseConnection;
   $con = $db->connection();
   
@@ -53,52 +54,36 @@ public function update_prep_course_options_pattern(){
   $prep_course_options_id = mysqli_real_escape_string($con, $_POST['prep_course_options_id']);
   // $sub_course_id = mysqli_real_escape_string($con, $_POST['sub_course_id']);
   $course_title = mysqli_real_escape_string($con, $_POST['course_title']);
-  $course_image = mysqli_real_escape_string($con, $_POST['course_image']);
+  
   $course_description = mysqli_real_escape_string($con, $_POST['course_description']);
   $course_features_list = mysqli_real_escape_string($con, $_POST['course_features_list']);
 
+    if(isset($_FILES['course_image']))
+    {
+     
+      $c_image= $_FILES['course_image']['name'];
+      $c_image_temp=$_FILES['course_image']['tmp_name'];
 
+        if($c_image_temp !="")
+        {
+          move_uploaded_file($c_image_temp, "../images/prep_courses/$c_image");
+         
+$sql="UPDATE `prep_course_options` SET `course_title`='$course_title',`course_image`='$c_image',
+      `course_description`='$course_description',`course_features_list`='$course_features_list' WHERE prep_course_options_id=$prep_course_options_id";
+      
+        }
 
-  if(isset($_FILES['course_image']))
-  {
-  $upload='../../images/prep_courses';
-  $tmp_name = $_FILES['course_image']['tmp_name'];
-  $name = basename($_FILES['course_image']['name']);
-
-     // Compress image
-function compressImage($source, $destination, $quality) {
-
-$info = getimagesize($source);
-
-if ($info['mime'] == 'image/jpeg') 
-  $image = imagecreatefromjpeg($source);
-
-elseif ($info['mime'] == 'image/gif') 
-  $image = imagecreatefromgif($source);
-
-elseif ($info['mime'] == 'image/png') 
-  $image = @imagecreatefrompng($source);
-
-imagejpeg($image, $destination, $quality);
-
+      }
+      else{
+        $sql ="UPDATE `prep_course_options` SET `course_title`='$course_title',
+      `course_description`='$course_description',`course_features_list`='$course_features_list' WHERE `prep_course_options_id` = $prep_course_options_id";
+    
+      }
+      $run_query=$con->query($sql);
+      return $run_query;
 }
 
-// Compress Image
-compressImage($tmp_name,"$upload/$name",60);
-  
 
-$sql = $con->query("UPDATE `prep_course_options` SET `course_title`='$course_title',`course_image`='$name',
-`course_description`='$course_description',`course_features_list`='$course_features_list' WHERE `prep_course_options_id` = $prep_course_options_id");
-  return $sql; 
-}
-
-else{
-  $sql = $con->query("UPDATE `prep_course_options` SET `course_title`='$course_title',
-`course_description`='$course_description',`course_features_list`='$course_features_list' WHERE `prep_course_options_id` = $prep_course_options_id");
-return $sql;
-}
- 
-}
 
 
 // ---------------------------------------------------------
