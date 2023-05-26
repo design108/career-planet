@@ -408,7 +408,127 @@ VALUES ('$course_id','$sub_course_id','$levels','$age_group','$description')");
 
 
 // ----------------------------------------------------------------------------------------
+public function fetch_career_counselling_grade_8()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
 
+  $sql_fetch=$con->query("SELECT * FROM `career_counselling` WHERE career_co_id=1");
+  $row_fetch = mysqli_fetch_array($sql_fetch);
+  return $row_fetch;
+}
+
+public function update_career_counselling_grade_8()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+  $career_co_id =  $_POST['career_co_id'];
+  $grade = mysqli_real_escape_string($con, $_POST['grade']);
+  $information = mysqli_real_escape_string($con, $_POST['information']);
+
+  $grade_8_update=$con->query("UPDATE `career_counselling` SET `grade`='$grade',`information`='$information' 
+  WHERE career_co_id=$career_co_id");
+  return $grade_8_update;
+
+}
+
+public function fetch_career_counselling_grade_10()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+
+  $sql_fetch=$con->query("SELECT * FROM `career_counselling` WHERE career_co_id=2");
+  $row_fetch = mysqli_fetch_array($sql_fetch);
+  return $row_fetch;
+}
+
+public function update_career_counselling_grade_10()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+  $career_co_id =  $_POST['career_co_id'];
+  $grade = mysqli_real_escape_string($con, $_POST['grade']);
+  $information = mysqli_real_escape_string($con, $_POST['information']);
+
+  $grade_10_update=$con->query("UPDATE `career_counselling` SET `grade`='$grade',`information`='$information' 
+  WHERE career_co_id=$career_co_id");
+  return $grade_10_update;
+
+}
+
+
+public function fetch_College()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+
+  $sql_fetch=$con->query("SELECT * FROM `career_counselling` WHERE career_co_id=3");
+  $row_fetch = mysqli_fetch_array($sql_fetch);
+  return $row_fetch;
+}
+
+public function update_ccollege()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+  $career_co_id =  $_POST['career_co_id'];
+  $grade = mysqli_real_escape_string($con, $_POST['grade']);
+  $information = mysqli_real_escape_string($con, $_POST['information']);
+
+  $college_update=$con->query("UPDATE `career_counselling` SET `grade`='$grade',`information`='$information' 
+  WHERE career_co_id=$career_co_id");
+  return $college_update;
+
+}
+
+public function fetch_profile()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+
+  $sql_fetch=$con->query("SELECT * FROM `career_counselling` WHERE career_co_id=4");
+  $row_fetch = mysqli_fetch_array($sql_fetch);
+  return $row_fetch;
+}
+
+public function update_profile()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+  $career_co_id =  $_POST['career_co_id'];
+  $grade = mysqli_real_escape_string($con, $_POST['grade']);
+  $information = mysqli_real_escape_string($con, $_POST['information']);
+
+  $profile_update=$con->query("UPDATE `career_counselling` SET `grade`='$grade',`information`='$information' 
+  WHERE career_co_id=$career_co_id");
+  return $profile_update;
+
+}
+
+public function fetch_intern()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+
+  $sql_fetch=$con->query("SELECT * FROM `career_counselling` WHERE career_co_id=5");
+  $row_fetch = mysqli_fetch_array($sql_fetch);
+  return $row_fetch;
+}
+
+
+public function update_intern()
+{
+  $db = new DatabaseConnection;
+  $con = $db->connection();
+  $career_co_id =  $_POST['career_co_id'];
+  $grade = mysqli_real_escape_string($con, $_POST['grade']);
+  $information = mysqli_real_escape_string($con, $_POST['information']);
+
+  $intern_update=$con->query("UPDATE `career_counselling` SET `grade`='$grade',`information`='$information' 
+  WHERE career_co_id=$career_co_id");
+  return $intern_update;
+
+}
 
 }
 ?>
