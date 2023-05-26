@@ -24,6 +24,7 @@ if(isset($_POST['prep_course_update']))
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +82,7 @@ if(isset($_POST['prep_course_update']))
         ?>
                     </div>
                     <div class="col-lg-12">
-                        <form action="#" method="POST">
+                        <form action="#" method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-lg-7 form-group">
                                     <label>Search Course :</label>
